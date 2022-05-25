@@ -1,18 +1,32 @@
+logging:
+  level:
+    com:
+      cts: DEBUG
+    org:
+      springframework:
+        web: ERROR
+    s7:
+      Application: WARN
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 server:
-  port: 8086
+  port: 8081
+  servlet:
+    context-path: /auth
 spring:
   application:
-    name: authorization-ws
+    name: auth-service
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: sa
+    driverClassName: org.h2.Driver
+    password: 123
+    url: jdbc:h2:mem:auth
+    username: root
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
-  h2:
-    console:
-      path: /h2
-      settings:
-        web-allow-others: true 
-
-
+  sql:
+    init:
+      mode: always
